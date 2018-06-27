@@ -95,7 +95,7 @@ class LambdaLog extends EventEmitter {
 
         // If `meta` is an String object, add the value to `meta` Object
         if(LambdaLog.isString(meta)) {
-            meta = {meta};
+            meta = { meta };
         }
         
         let metadata = Object.assign({}, meta || {}, this.config.meta, errorMeta),
