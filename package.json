@@ -1,6 +1,6 @@
 {
-  "name": "lambda-log",
-  "version": "1.4.0",
+  "name": "lambda-log-json",
+  "version": "1.0.0",
   "description": "Basic logging mechanism for Node 6.10+ Lambda Functions",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KyleRoss/node-lambda-log.git"
+    "url": "git+https://github.com/marceloig/node-lambda-log.git"
   },
   "keywords": [
     "lambda",
@@ -26,9 +26,9 @@
   "author": "Kyle Ross <thejavascriptguy@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KyleRoss/node-lambda-log/issues"
+    "url": "https://github.com/marceloig/node-lambda-log/issues"
   },
-  "homepage": "https://github.com/KyleRoss/node-lambda-log#readme",
+  "homepage": "https://github.com/marceloig/node-lambda-log#readme",
   "engines": {
     "node": ">= 6.10.0"
   },

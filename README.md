@@ -1,10 +1,9 @@
-# lambda-log
-[![npm](https://img.shields.io/npm/v/lambda-log.svg?style=for-the-badge)](https://www.npmjs.com/package/lambda-log) [![npm](https://img.shields.io/npm/dt/lambda-log.svg?style=for-the-badge)](https://www.npmjs.com/package/lambda-log) [![David](https://img.shields.io/david/KyleRoss/node-lambda-log.svg?style=for-the-badge)](https://david-dm.org/KyleRoss/node-lambda-log) [![Travis](https://img.shields.io/travis/KyleRoss/node-lambda-log/master.svg?style=for-the-badge)](https://travis-ci.org/KyleRoss/node-lambda-log) [![license](https://img.shields.io/github/license/KyleRoss/node-lambda-log.svg?style=for-the-badge)](https://github.com/KyleRoss/node-lambda-log/blob/master/LICENSE) [![Beerpay](https://img.shields.io/beerpay/KyleRoss/node-lambda-log.svg?style=for-the-badge)](https://beerpay.io/KyleRoss/node-lambda-log)
+# lambda-log-json
 
 Basic logging mechanism for **Node 6.10+** Lambda Functions which properly formats various logs into JSON format for easier reading through Cloudwatch Logs. The module includes functionality to include custom metadata and tags for each log, allowing increased filtering capabilities within Cloudwatch.
 
 **Why another lambda logger?**  
-There are others out there, but seemed to be convoluted, included more functionality than needed, not maintained, or not configurable enough. I created lambda-log to include the important functionality from other loggers, but still keeping it simple and dependency-free.
+There are others out there, but seemed to be convoluted, included more functionality than needed, not maintained, or not configurable enough. I created lambda-log-json to include the important functionality from other loggers, but still keeping it simple and dependency-free.
 
 ### Features
 
@@ -26,14 +25,14 @@ Node v6.10+ is required. You need to ensure that your Lambda function is running
 Install via NPM:
 
 ```bash
-$ npm install lambda-log --save
+$ npm install lambda-log-json --save
 ```
 
 ### Usage
 Here is a basic usage example, read the API documentation below to learn more.
 
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 exports.handler = function(event, context, callback) {
     // set some optional metadata to be included in all logs (this is an overkill example)
@@ -87,7 +86,7 @@ exports.handler = function(event, context, callback) {
 ## API Documentation
 
 ### lambdalog
-Instance of the `LambdaLog` class which is exported when calling `require('lambda-log')`.
+Instance of the `LambdaLog` class which is exported when calling `require('lambda-log-json')`.
 
 ### lambdalog.config
 Configuration object for LambdaLog. These options can be changed at any time.
@@ -109,7 +108,7 @@ Generates JSON log message based on the provided parameters and the global confi
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 log.log('info', 'This is a test info message');
 log.log('info', 'This is a test info message', { someKey: 'with some optional metadata!' });
@@ -130,7 +129,7 @@ Shorthand method for calling `lambdalog.log('info')`.
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 log.info('This is a test info message');
 log.info('This is a test info message', { someKey: 'with some optional metadata!' });
@@ -149,7 +148,7 @@ Shorthand method for calling `lambdalog.log('warn')`.
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 log.warn('This is a test warn message');
 log.warn('This is a test warn message', { someKey: 'with some optional metadata!' });
@@ -168,7 +167,7 @@ Shorthand method for calling `lambdalog.log('error')`.
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 log.error('This is a test error message');
 log.error('This is a test error message', { someKey: 'with some optional metadata!' });
@@ -190,7 +189,7 @@ _(Since v1.1.0)_ Shorthand method for calling `lambdalog.log('debug')`. By defau
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 // This log will return false and not display any message since config.debug is false by default
 log.debug('This is a test debug message');
@@ -216,7 +215,7 @@ _(Since v1.4.0)_ Generates a log message if `test` is a falsy value. If `test` i
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 let results = null;
 // This log will be displayed since `results` is a falsy value.
@@ -242,7 +241,7 @@ Provides access to uninstantiated LambdaLog class. If you want to customize the 
 
 **Example:**
 ```js
-const LambdaLog = require('lambda-log').LambdaLog;
+const LambdaLog = require('lambda-log-json').LambdaLog;
 
 class MyLogger extends LambdaLog {
     constructor() {
@@ -286,7 +285,7 @@ The `log` event is emitted (using EventEmitter) for every log generated. This al
 
 **Example:**
 ```js
-const log = require('lambda-log');
+const log = require('lambda-log-json');
 
 // ES6 Destructuring
 log.on('log', function({ level, log, meta }) {
@@ -319,4 +318,4 @@ $ npm run test
 Feel free to submit a pull request if you find any issues or want to integrate a new feature. Keep in mind, this module should be lightweight and advanced functionality should be published to NPM as a wrapper around this module. Ensure to write and run the tests before submitting a pull request. The code should work without any special flags in Node 6.10.
 
 ## License
-MIT License. See [License](https://github.com/KyleRoss/node-lambda-log/blob/master/LICENSE) in the repository.
+MIT License. See [License](https://github.com/KyleRoss/node-lambda-log-json/blob/master/LICENSE) in the repository.
