@@ -87,6 +87,16 @@ class LambdaLog extends EventEmitter {
             errorMeta.stack = msg.stack;
             msg = msg.message;
         }
+
+        // If `meta` is an Error-like object, add the `stack` to `meta`
+        if(LambdaLog.isError(meta)) {
+            errorMeta.stack = msg.stack;
+        }
+
+        // If `meta` is an String object, add the value to `meta` Object
+        if(LambdaLog.isString(meta)) {
+            meta = {meta};
+        }
         
         let metadata = Object.assign({}, meta || {}, this.config.meta, errorMeta),
             data = Object.assign({ _logLevel: level, msg }, metadata, { _tags: tags });
@@ -130,6 +140,16 @@ class LambdaLog extends EventEmitter {
                 val.hasOwnProperty('message') && val.hasOwnProperty('stack')
             )
         );
+    }
+
+    /**
+     * Checks if value is an String object
+     * @static
+     * @param  {Any}     val Value to test
+     * @return {Boolean}     Whether the value is an Error or Error-like object
+     */
+    static isString(val) {
+        return (typeof val === 'string' || val instanceof String);
     }
 }
 
